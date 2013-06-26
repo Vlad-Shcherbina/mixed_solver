@@ -72,6 +72,8 @@ def check_solution(a, game_value, strategy1, strategy2):
     assert len(strategy2) == n
     assert abs(sum(strategy1) - 1) < eps
     assert abs(sum(strategy2) - 1) < eps
+    assert all(strategy1 > -eps)
+    assert all(strategy2 > -eps)
 
     for i in range(n):
         assert numpy.dot(strategy1, a[:, i]) >= game_value - eps
