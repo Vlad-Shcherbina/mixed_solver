@@ -27,7 +27,7 @@ def solve(a):
     Solve matrix game and return triple (game_value, strategy1, strategy2)
 
     >>> solve(numpy.array([[0, 1], [1, 0]]))
-    (0.5, array([ 0.5,  0.5]), array([ 0.5,  0.5]))
+    (0.5, array([0.5, 0.5]), array([0.5, 0.5]))
     """
 
     m, n = a.shape
@@ -39,8 +39,8 @@ def solve(a):
     tableau[m, :n] = -1
     tableau[:m, n] = 1
 
-    row_labels = range(m)
-    col_labels = range(-n, 0)
+    row_labels = list(range(m))
+    col_labels = list(range(-n, 0))
 
     while True:
         q = numpy.argmin(tableau[m, :n])
@@ -84,17 +84,17 @@ def check_solution(a, game_value, strategy1, strategy2):
 
 
 def solve_and_check(a):
-    print '---'
-    print a
+    print('---')
+    print(a)
     sol = solve(a)
-    print sol
+    print(sol)
     check_solution(a, *sol)
 
 
 if __name__ == '__main__':
     import doctest
     result = doctest.testmod()
-    print 'doctest:', result
+    print('doctest:', result)
     assert result.failed == 0
 
     solve_and_check(numpy.array([[0]]))
@@ -119,4 +119,4 @@ if __name__ == '__main__':
             for j in range(n):
                 a[i, j] = random.random()
         solve_and_check(a)
-    print 'all ok'
+    print('all ok')
